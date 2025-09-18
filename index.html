@@ -18,7 +18,7 @@
       margin-top: 20px;
     }
     button {
-      margin-top: 20px;
+      margin: 10px;
       padding: 10px 20px;
       font-size: 16px;
       background-color: #ff0055;
@@ -38,6 +38,7 @@
   <canvas id="canvas"></canvas>
   <br>
   <button onclick="makeGarbage()">Mindless Garbage</button>
+  <button onclick="downloadGarbage()">Download Garbage</button>
 
   <script>
     let originalImage = new Image();
@@ -64,7 +65,7 @@
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
 
-      // Brutally downscale
+      // Downscale to pixel mush
       const tinyCanvas = document.createElement('canvas');
       tinyCanvas.width = 50;
       tinyCanvas.height = 50;
@@ -84,6 +85,14 @@
       }
     }
 
+    function downloadGarbage() {
+      const canvas = document.getElementById('canvas');
+      const link = document.createElement('a');
+      link.download = 'mindless-garbage.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
     function rand255() {
       return Math.floor(Math.random() * 256);
     }
@@ -100,3 +109,4 @@
   </script>
 </body>
 </html>
+
